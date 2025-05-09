@@ -1,11 +1,11 @@
 <?php
 require_once "settings.php";
-$dbconn = @mysqli_connect($host, $user, $pwd, $sql_db);
 
-if ($dbconn) {
+
+if ($conn) {
     
     $query  = "SELECT * FROM cars";
-    $result = mysqli_query($dbconn, $query);
+    $result = mysqli_query($conn, $query);
 
     if ($result) {
         if (mysqli_num_rows($result) > 0) {
@@ -37,11 +37,11 @@ if ($dbconn) {
         }
 
         mysqli_free_result($result);
-        mysqli_close($dbconn);
+        mysqli_close($conn);
     }
     else {
-        echo "Query error: " . mysqli_error($dbconn);
-        mysqli_close($dbconn);
+        echo "Query error: " . mysqli_error($conn);
+        mysqli_close($conn);
         exit;
     }
 
